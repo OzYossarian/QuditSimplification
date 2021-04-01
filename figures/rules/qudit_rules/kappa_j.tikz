@@ -1,0 +1,5 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (0, 0) {$\vec{\kappa}_j = \left( j\frac{2\pi}{d} \ , \ 2j\frac{2\pi}{d} \ , \ \ldots \ , \ (d-1)j\frac{2\pi}{d} \ \right)$};
+	\end{pgfonlayer}
+\end{tikzpicture}

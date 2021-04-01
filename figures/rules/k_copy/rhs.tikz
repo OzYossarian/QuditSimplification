@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=X dot] (5) at (0, -0.5) {};
+		\node [style=none] (7) at (0, -1.75) {};
+		\node [style=none] (11) at (-0.75, 2) {};
+		\node [style=none] (12) at (0.75, 2) {};
+		\node [style=Z phase dot] (13) at (-0.75, 1) {$n\vec{\kappa}$};
+		\node [style=Z phase dot] (14) at (0.75, 1) {$n\vec{\kappa}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (7.center) to (5);
+		\draw [bend left] (5) to (13);
+		\draw (11.center) to (13);
+		\draw [bend left] (14) to (5);
+		\draw (12.center) to (14);
+	\end{pgfonlayer}
+\end{tikzpicture}

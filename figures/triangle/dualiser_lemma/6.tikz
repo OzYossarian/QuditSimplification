@@ -1,0 +1,12 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=hadamard adjoint] (0) at (0, 0) {};
+		\node [style=none] (2) at (0, 1.75) {};
+		\node [style=none] (3) at (0, -1.75) {};
+		\node [style=Z phase dot] (6) at (0, -1) {$-\vec{\tau}$};
+		\node [style=Z phase dot] (7) at (0, 1) {$-\vec{\tau}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (2.center) to (3.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

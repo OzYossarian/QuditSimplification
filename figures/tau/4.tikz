@@ -1,0 +1,11 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=Z dot] (0) at (0, -0.5) {};
+		\node [style=none] (1) at (0, 2.25) {};
+		\node [style=X phase dot] (4) at (0, 0.5) {$\mp\vec{\tau}$};
+		\node [style=Z phase dot] (5) at (0, 1.5) {$\mp\vec{\tau}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (1.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

@@ -1,0 +1,12 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (3) at (0, 2) {};
+		\node [style=none] (4) at (0, -2) {};
+		\node [style=Z phase dot] (6) at (0, 1.25) {$\vec{\tau}$};
+		\node [style=Z phase dot] (8) at (0, -1.25) {$\vec{\tau}$};
+		\node [style=X phase dot] (9) at (0, 0) {$\vec{\tau}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (3.center) to (4.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

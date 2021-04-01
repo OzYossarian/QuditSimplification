@@ -1,0 +1,5 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (0, 0) {$\vec{\tau} = \left( \ \tau_1 \ , \ \ldots \ , \ \tau_{d-1} \ \right)$};
+	\end{pgfonlayer}
+\end{tikzpicture}

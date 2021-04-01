@@ -1,0 +1,12 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (1) at (0, 2) {};
+		\node [style=none] (2) at (0, -2) {};
+		\node [style=Z phase dot] (4) at (0, 0) {$\vec{\kappa}$};
+		\node [style=map] (5) at (0, 1.25) {$S$};
+		\node [style=mapadj] (6) at (0, -1.25) {$S$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (2.center) to (1.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

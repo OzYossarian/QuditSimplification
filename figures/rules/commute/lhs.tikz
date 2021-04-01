@@ -1,0 +1,11 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (0, 2) {};
+		\node [style=none] (1) at (0, -2) {};
+		\node [style=Z phase dot] (4) at (0, -1) {$n\vec{\kappa}$};
+		\node [style=X phase dot] (6) at (0, 1) {$\vec{\alpha}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0.center) to (1.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

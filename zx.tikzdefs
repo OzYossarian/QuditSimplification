@@ -1,0 +1,130 @@
+\usepackage{xspace}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{graphicx}
+
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{fadings}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.markings}
+
+\newcommand{\p}[2]{\ensuremath{\vec{p}^{\: #1,#2}}}
+
+\newcommand{\bra}[1]{\ensuremath{\left\langle #1 \right|}}
+\newcommand{\ket}[1]{\ensuremath{\left|  #1 \right\rangle}}
+\newcommand{\braket}[2]{\ensuremath{\langle#1|#2\rangle}}
+\newcommand{\ketbra}[2]{\ensuremath{\ket{#1}\!\bra{#2}}}
+
+\newcommand{\zxcalculus}{ZX-calculus\xspace}
+\newcommand{\zxdiagram}{ZX-diagram\xspace}
+\newcommand{\zxdiagrams}{ZX-diagrams\xspace}
+
+\newcommand{\SpiderRule}{\ensuremath{(\bm f)}\xspace}
+\newcommand{\FusionRule}{\SpiderRule}
+\newcommand{\PiRule}{\ensuremath{(\bm \pi)}\xspace}
+\newcommand{\CopyRule}{\ensuremath{(\bm c)}\xspace}
+\newcommand{\HadamardRule}{\ensuremath{(\bm{h})}\xspace}
+\newcommand{\IdentityRule}{\ensuremath{(\bm{i1})}\xspace}
+\newcommand{\IdRule}{\IdentityRule}
+\newcommand{\HCancelRule}{\ensuremath{(\bm{i2})}\xspace}
+\newcommand{\IdIIRule}{\HCancelRule}
+\newcommand{\HHRule}{\HCancelRule}
+\newcommand{\BialgRule}{\ensuremath{(\bm b)}\xspace}
+\newcommand{\BialgebraRule}{\BialgRule}
+\newcommand{\SCRule}{\BialgRule}
+\newcommand{\StrongCompRule}{\BialgRule}
+\newcommand{\HopfRule}{\ensuremath{(\bm a)}\xspace}
+\newcommand{\AntipodeRule}{\HopfRule}
+\newcommand{\CompRule}{\HopfRule}
+\newcommand{\PiCopyRule}{\ensuremath{(\bm{\pi c})}\xspace}
+
+
+%% small versions
+\newcommand{\antipoderule}{{\footnotesize\AntipodeRule}}
+\newcommand{\picopyrule}{{\footnotesize\PiCopyRule}}
+\newcommand{\comprule}{{\footnotesize\CompRule}}
+\newcommand{\hopfrule}{{\footnotesize\HopfRule}}
+\newcommand{\strongcomprule}{{\footnotesize\StrongCompRule}}
+\newcommand{\scrule}{{\footnotesize\SCRule}}
+\newcommand{\bialgebrarule}{{\footnotesize\BialgebraRule}}
+\newcommand{\bialgrule}{{\footnotesize\BialgRule}}
+\newcommand{\idiirule}{{\footnotesize\IdIIRule}}
+\newcommand{\hcancelrule}{{\footnotesize\HCancelRule}}
+\newcommand{\idrule}{{\footnotesize\IdRule}}
+\newcommand{\identityrule}{{\footnotesize\IdentityRule}}
+\newcommand{\hadamardrule}{{\footnotesize\HadamardRule}}
+\newcommand{\hhrule}{\hadamardrule}
+\newcommand{\copyrule}{\footnotesize\CopyRule}
+\newcommand{\pirule}{\footnotesize\PiRule}
+\newcommand{\spiderrule}{\footnotesize\SpiderRule}
+\newcommand{\fusionrule}{\footnotesize\SpiderRule}
+
+\newcommand{\comp}[1]{\overline{#1}}
+
+\newcommand{\ruleFusion}{\hyperlink{rule_fusion}{\mathbf{(f)}}}
+\newcommand{\ruleId}{\hyperlink{rule_id}{\mathbf{(id)}}}
+\newcommand{\ruleGreen}{\hyperlink{rule_green_cup}{\mathbf{(t)}}}
+\newcommand{\ruleZeroCopy}{\hyperlink{rule_0_copy}{\mathbf{(cp_0)}}}
+\newcommand{\ruleBialgebra}{\hyperlink{rule_bialgebra}{\mathbf{(b)}}}
+\newcommand{\ruleKCopy}{\hyperlink{rule_k_copy}{\mathbf{(cp_{\mathcal{M}})}}}
+\newcommand{\ruleCommute}{\hyperlink{rule_commute}{\mathbf{(cm)}}}
+\newcommand{\ruleHadamard}{\hyperlink{rule_hadamard}{\mathbf{(H)}}}
+\newcommand{\ruleEuler}{\hyperlink{rule_euler}{\mathbf{(E)}}}
+\newcommand{\ruleColourChange}{\hyperlink{rule_colour_change}{\mathbf{(cc)}}}
+\newcommand{\ruleSnake}{\hyperlink{rule_snake}{\mathbf{(s)}}}
+
+\definecolor{bang_orange}{RGB}{255, 128, 0}
+\definecolor{x_red}{RGB}{255, 136, 136}
+\definecolor{z_green}{RGB}{221, 255, 221}
+
+\makeatletter
+\DeclareRobustCommand{\cev}[1]{%
+  {\mathpalette\do@cev{#1}}%
+}
+\newcommand{\do@cev}[2]{%
+  \vbox{\offinterlineskip
+    \sbox\z@{$\m@th#1 x$}%
+    \ialign{##\cr
+      \hidewidth\reflectbox{$\m@th#1\vec{}\mkern4mu$}\hidewidth\cr
+      \noalign{\kern-\ht\z@}
+      $\m@th#1#2$\cr
+    }%
+  }%
+}
+\makeatother
+
+\makeatletter
+\newcommand{\boxshape}[3]{%
+\pgfdeclareshape{#1}{
+\inheritsavedanchors[from=rectangle] % this is nearly a rectangle
+\inheritanchorborder[from=rectangle]
+\inheritanchor[from=rectangle]{center}
+\inheritanchor[from=rectangle]{north}
+\inheritanchor[from=rectangle]{south}
+\inheritanchor[from=rectangle]{west}
+\inheritanchor[from=rectangle]{east}
+% ... and possibly more
+\backgroundpath{% this is new
+% store lower right in xa/ya and upper right in xb/yb
+\southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+\northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+
+\@tempdima=#2
+\@tempdimb=#3
+
+\pgfpathmoveto{\pgfpoint{\pgf@xa - 5pt + \@tempdima}{\pgf@ya}}
+\pgfpathlineto{\pgfpoint{\pgf@xa - 5pt - \@tempdima}{\pgf@yb}}
+\pgfpathlineto{\pgfpoint{\pgf@xb + 5pt + \@tempdimb}{\pgf@yb}}
+\pgfpathlineto{\pgfpoint{\pgf@xb + 5pt - \@tempdimb}{\pgf@ya}}
+\pgfpathlineto{\pgfpoint{\pgf@xa - 5pt + \@tempdima}{\pgf@ya}}
+\pgfpathclose
+}
+}}
+
+\boxshape{NEbox}{0pt}{3pt}
+\boxshape{SEbox}{0pt}{-3pt}
+\boxshape{NWbox}{5pt}{0pt}
+\boxshape{SWbox}{-5pt}{0pt}
+\boxshape{EBox}{-3pt}{3pt}
+\boxshape{WBox}{3pt}{-3pt}
+\makeatother

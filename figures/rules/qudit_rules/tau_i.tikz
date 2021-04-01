@@ -1,0 +1,5 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (0, 0) {$\tau_i = i\pi + i^2\frac{\pi}{d}$};
+	\end{pgfonlayer}
+\end{tikzpicture}

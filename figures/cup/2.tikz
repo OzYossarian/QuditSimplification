@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (0, -1.5) {};
+		\node [style=none] (1) at (1, -0.5) {};
+		\node [style=none] (2) at (-1, -0.5) {};
+		\node [style=Z phase dot] (3) at (1, -0.5) {$\vec{\alpha}$};
+		\node [style=none] (4) at (1, 0.5) {};
+		\node [style=none] (5) at (-1, 0.5) {};
+		\node [style=Z dot] (6) at (-1, -0.5) {};
+		\node [style=X dot] (7) at (0, -1.5) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (5.center)
+			 to (2.center)
+			 to [bend right=45] (0.center);
+		\draw (4.center)
+			 to (1.center)
+			 to [bend left=45] (0.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

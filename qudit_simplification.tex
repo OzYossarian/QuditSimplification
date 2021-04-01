@@ -1,0 +1,299 @@
+\documentclass[11pt, oneside]{article}      % use "amsart" instead of "article" for AMSLaTeX format
+\input{preamble}
+
+\title{\textbf{Qudit ZX-Diagram Simplification (Draft)}}
+\author{
+  Alex Townsend-Teague
+  \and
+  Quanlong Wang
+  \and
+  Konstantinos Meichantzidis
+}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+\end{abstract}
+
+\section{Introduction}
+
+Diagrams are read bottom to top. `It is not hard to believe that qubits and qutrits behave differently from qupits.' \citep{Cui_2015}. Can't decide on notation for Hadamard stuff. Numbered yellow boxes are good for graph-like diagrams, but red/green split boxes are great for colour change rules:
+
+\begin{equation}
+	\tikzfig{rules/colour_change/split/lhs} \quad = \quad 
+	\tikzfig{rules/colour_change/rhs}
+	\hspace{60pt}
+	\tikzfig{rules/colour_change/split/flip_lhs} \quad = \quad 
+	\tikzfig{rules/colour_change/flip_rhs}
+\end{equation}
+
+And then the dualiser has a natural alternative notation - important because using a yellow box with a $D$ on it now looks more like a Hadamard with decoration $D$:
+
+\begin{equation}
+	\tikzfig{rules/snake/split/hh} \quad = \quad 
+	\tikzfig{rules/snake/split/-h-h} \quad = \quad
+	\tikzfig{rules/snake/split/dualiser_red} \quad = \quad
+	\tikzfig{rules/snake/split/dualiser_green}
+\end{equation}
+
+But the split boxes have the drawback that often you can no longer say `the equation holds with the roles of green and red interchanged' - e.g. the Euler decomposition of the Hadamard. Not a problem for dualiser though. 
+
+Qudit rules are shown in Figure \ref{fig:qudit_rules}. We're mostly interested in stabilizer stuff so will give phase components as multiples of $\frac{2\pi}{d}$.
+\begin{itemize}
+	\item $\vec{\kappa} = (1, 2, ..., d-1)$
+	\item $\vec{\tau}$ has components $\vec{\tau}_j = \frac{j}{2}(j+d)$
+	\item $\vec{\alpha}^n$ has components $\vec{\alpha}^n_j = \vec{\alpha}_{j-n} - \vec{\alpha}_{-n}$
+	\item Indices are mod $d$, and $\vec{\alpha}_0 = 0$ for any phase $a$.
+	\item $\cev{\alpha} = (\vec{\alpha}_d-1, \vec{\alpha}_d-2, ...  , \vec{\alpha}_1)$
+\end{itemize}
+
+\begin{figure}
+	\begin{tcolorbox}[colback=white]
+		\begin{equation*}
+			\tikzfig{rules/fusion} \quad \hypertarget{rule_fusion}{\mathbf{(f)}}
+		\end{equation*}
+		% \vspace{5pt}
+		\begin{equation*}
+			\tikzfig{rules/identity/lhs} \quad = \quad 
+			\tikzfig{rules/identity/rhs} \quad \hypertarget{rule_id}{\mathbf{(id)}}
+			\hspace{60pt}
+			\tikzfig{rules/green/lhs} \quad = \quad 
+			\tikzfig{rules/green/rhs} \quad \hypertarget{rule_green_cup}{\mathbf{(g)}}
+		\end{equation*}
+		\vspace{5pt}
+		\begin{equation*}
+			\tikzfig{rules/0_copy/lhs} \quad = \quad 
+			\tikzfig{rules/0_copy/rhs} \quad \hypertarget{rule_0_copy}{\mathbf{(cp_0)}}
+			\hspace{60pt}
+			\tikzfig{rules/bialgebra/lhs} \quad = \quad 
+			\tikzfig{rules/bialgebra/rhs} \quad \hypertarget{rule_bialgebra}{\mathbf{(b)}}
+		\end{equation*}
+		\vspace{5pt}
+		\begin{equation*}
+			\tikzfig{rules/k_copy/lhs} \quad = \quad 
+			\tikzfig{rules/k_copy/rhs} \quad \hypertarget{rule_k_copy}{\mathbf{(cp_{\kappa})}}
+			\hspace{60pt}
+			\tikzfig{rules/commute/lhs} \quad = \quad 
+			\tikzfig{rules/commute/rhs} \quad \hypertarget{rule_commute}{\mathbf{(cm)}}
+		\end{equation*}
+		% \vspace{5pt}
+		\begin{equation*}
+			\tikzfig{rules/hadamard/h_hdagger} \quad = \quad 
+			\tikzfig{rules/hadamard/identity} \quad = \quad 
+			\tikzfig{rules/hadamard/hdagger_h} \quad \hypertarget{rule_hadamard}{\mathbf{(H)}}
+			\hspace{60pt}
+			\tikzfig{rules/hadamard/h} \quad = \quad 
+			\tikzfig{rules/hadamard/decomposition} \quad \hypertarget{rule_euler}{\mathbf{(E)}}
+		\end{equation*}
+		\vspace{5pt}
+		\begin{equation*}
+			\tikzfig{rules/colour_change/lhs} \quad = \quad 
+			\tikzfig{rules/colour_change/rhs} \quad \hypertarget{rule_colour_change}{\mathbf{(cc)}}
+			\hspace{60pt}
+			\tikzfig{rules/colour_change/flip_lhs} \quad = \quad 
+			\tikzfig{rules/colour_change/flip_rhs} \quad \mathbf{(cc)}
+		\end{equation*}
+		\vspace{5pt}
+		\begin{equation*}
+			\tikzfig{rules/snake/snake} \quad = \quad 
+			\tikzfig{rules/snake/multi_wire} \quad = \quad 
+			\tikzfig{rules/snake/hadamards} \quad = \quad 
+			\tikzfig{rules/snake/hadamard_adjoints} \quad = \quad
+			\tikzfig{rules/snake/split/dualiser_red} \quad = \quad
+			\tikzfig{rules/snake/split/dualiser_green} \quad \hypertarget{rule_snake}{\mathbf{(s)}}
+		\end{equation*}
+	\end{tcolorbox}
+	\vspace{5pt}
+	\caption{Qudit ZX-calculus rules}
+	\label{fig:qudit_rules}
+
+\end{figure}
+
+\section{Stabilizer Phases}
+
+We want to know what spider phases we might encounter in the world of stabilizer qudit ZX-calculus. For odd $d$, components $\vec{a}_j$ of stabilizer phases $\vec{a}$ will be integer multiples of $\frac{2\pi}{d}$. For even $d$, stabilizer components $\vec{a}_j$ can be half-integer multiples of $\frac{2\pi}{d}$ (i.e. integer multiples of $\frac{\pi}{d}$). The set of stabilizer phases is a subset of the set of all possible $(d-1)$-tuples of such integers/half-integers. In general, this subset is strict, though we note that for qubits and qutrits it is not.
+
+The shift gate $S$ is uniquely defined by its action on the Pauli gates $X$ and $Z$. Specifically, it satisfies:
+
+\begin{equation}
+	SXS^\dagger = XZ \quad,\quad SZS^\dagger = Z
+\end{equation}
+
+In ZX-parlance, these equations are:
+
+\begin{equation}
+	\tikzfig{clifford/shift/X/1} =~~ \tikzfig{clifford/shift/X/2} \quad,
+	\hspace{30pt}
+	\tikzfig{clifford/shift/Z/1} =~~ \tikzfig{clifford/shift/Z/2}
+\end{equation}
+
+These are satisfied by the following $Z$-gate whose phase $\vec{s}$ has components $\vec{s}_j$:
+
+\begin{equation}
+	\tikzfig{clifford/shift/def/1} = \tikzfig{clifford/shift/def/2} \quad,\quad 
+	\vec{s}_j = \frac{j}{2}(j + 2 - d)
+\end{equation}
+
+Note that for even $d$, the components can be half-integers - for example, $\vec{s}_{d-1} = \frac{d-1}{2}$. For all $d$, the qudit Clifford group on $n$ qubits is generated by the Hadamard gate $H$, the shift gate $S$ and the generalised $CNOT$ gate \citep{Farinholt_2014}:
+
+\begin{equation}
+	\tikzfig{clifford/gens/H} \quad,\hspace{30pt}
+	\tikzfig{clifford/gens/S} \quad,\hspace{30pt}
+	\tikzfig{clifford/gens/CNOT}
+\end{equation}
+
+The Clifford group on one qudit (the \emph{local Clifford group}) is generated by $H$ and $S$ \citep{Farinholt_2014}. We seek a normal form for such gates, \`{a} la \citep{Wang_2018}{Theorem 6.2.12}. \textbf{So far this has proved difficult!} I've been playing around a bit with gates with the phase $\p{k}{x}$, whose components are:
+
+\begin{equation}
+	 \p{k}{x}_j = -j\left(\frac{j+1}{2}k + x\right)
+\end{equation} 
+
+These are analogous to those in \cite{Wang_2018}{Lemma 6.2.8} and have the following properties:
+
+\begin{enumerate}
+	\item $\tikzfig{clifford/p/def/1} = \tikzfig{clifford/p/def/2}$
+	\item They form an Abelian subgroup: 
+	\begin{enumerate}
+		\item $\p{k}{x} + \p{l}{y} = \p{k+l}{x+y}$
+		\item $-\p{k}{x} = \p{-k}{-x}$
+		\item identity is $\p{0}{0} = (0, ..., 0)$
+	\end{enumerate}
+	\item They include a lot of our favourite phases:
+	\begin{enumerate}
+	 	\item $\vec{\kappa} = \p{0}{-1}$
+	 	\item $\vec{\tau} = \p{-1}{\frac{1-d}{2}}$
+	 	\item $\vec{s} = \p{-1}{\frac{d-1}{2}}$
+	 	\item $\cev{s} = \p{-1}{\frac{d+3}{2}}$
+	 \end{enumerate}
+	\item The last component $\p{k}{x}_{d-1}$ is exactly $x$.
+\end{enumerate}
+
+\section{Local Complementation and Pivot}
+
+Local complementation carries over to qudit case without much fuss. Some lemmas we'll need:
+
+\begin{lemma}
+	\begin{equation}
+		\tikzfig{cup/1} ~~=~~ \tikzfig{cup/8} \quad,\hspace{30pt}
+		\tikzfig{tau/1} ~~=~~ \tikzfig{tau/5} \quad,\hspace{30pt}
+		\tikzfig{triangle/dualiser_lemma/1} ~~=~~ \tikzfig{triangle/dualiser_lemma/6}
+	\end{equation}
+	\begin{proof}
+		For the first equation:
+		\begin{equation}	
+			\begin{split}
+				\tikzfig{cup/1} ~~=~~ 
+				\tikzfig{cup/2} ~~=~~ 
+				\tikzfig{cup/3} ~~=~~ 
+				\tikzfig{cup/4}\\ ~~=~~
+				\tikzfig{cup/5} ~~=~~ 
+				\tikzfig{cup/6} ~~=~~ 
+				\tikzfig{cup/7} ~~=~~ 
+				\tikzfig{cup/8}
+			\end{split}
+		\end{equation}
+
+		For the second:
+
+		\begin{equation}
+			\tikzfig{tau/1} ~~=~~ 
+			\tikzfig{tau/2} ~~=~~ 
+			\tikzfig{tau/3} ~~=~~ 
+			\tikzfig{tau/4} ~~=~~ 
+			\tikzfig{tau/5}
+		\end{equation}
+
+		And the third:
+
+		\begin{equation}
+			\tikzfig{triangle/dualiser_lemma/1} ~~=~~ 
+			\tikzfig{triangle/dualiser_lemma/2} ~~=~~ 
+			\tikzfig{triangle/dualiser_lemma/3} ~~=~~ 
+			\tikzfig{triangle/dualiser_lemma/4} ~~=~~ 
+			\tikzfig{triangle/dualiser_lemma/5} ~~=~~ 
+			\tikzfig{triangle/dualiser_lemma/6}
+		\end{equation}
+	\end{proof}
+\end{lemma}
+
+So, first we have a triangle lemma:
+
+\begin{lemma}
+	\begin{equation}
+		\tikzfig{triangle/basic_lemma/1} ~~=~~ \tikzfig{triangle/basic_lemma/11}
+	\end{equation}
+	\begin{proof}
+		\begin{align*}
+			&~~~~~ \tikzfig{triangle/basic_lemma/1} &&~~=~~ \tikzfig{triangle/basic_lemma/2} &&&~~=~~ \tikzfig{triangle/basic_lemma/3} \\
+			&~~=~~ \tikzfig{triangle/basic_lemma/4} &&~~=~~ \tikzfig{triangle/basic_lemma/5} &&&~~=~~ \tikzfig{triangle/basic_lemma/6} \\
+			&~~=~~ \tikzfig{triangle/basic_lemma/7} &&~~=~~ \tikzfig{triangle/basic_lemma/8} &&&~~=~~ \tikzfig{triangle/basic_lemma/9} \\
+			&~~=~~ \tikzfig{triangle/basic_lemma/10} &&~~=~~ \tikzfig{triangle/basic_lemma/11}
+		\end{align*}
+		
+	\end{proof}
+\end{lemma}
+
+Then a lemma that tells us how to remove one edge in the $K_3$ graph state:
+
+\begin{lemma}
+	\begin{equation}
+		\tikzfig{triangle/graph_state_lemma/1} ~~=~~ \tikzfig{triangle/graph_state_lemma/13}
+	\end{equation}
+	\begin{proof}
+		\begin{align*}
+			&~~~~~ \tikzfig{triangle/graph_state_lemma/2} &&~~=~~ \tikzfig{triangle/graph_state_lemma/3} &&&~~=~~ \tikzfig{triangle/graph_state_lemma/4} \\
+			&~~=~~ \tikzfig{triangle/graph_state_lemma/5} &&~~=~~ \tikzfig{triangle/graph_state_lemma/6} &&&~~=~~ \tikzfig{triangle/graph_state_lemma/7} \\
+			&~~=~~ \tikzfig{triangle/graph_state_lemma/8} &&~~=~~ \tikzfig{triangle/graph_state_lemma/9} &&&~~=~~ \tikzfig{triangle/graph_state_lemma/10} \\
+			&~~=~~ \tikzfig{triangle/graph_state_lemma/11} &&~~=~~ \tikzfig{triangle/graph_state_lemma/12}
+		\end{align*}
+		
+	\end{proof}
+\end{lemma}
+
+And finally the local complementation result for the complete graph $K_3$:
+
+\begin{lemma}
+	\begin{equation}
+		\tikzfig{triangle/graph_state/1} ~~=~~ \tikzfig{triangle/graph_state/8}
+	\end{equation}
+	\begin{proof}
+		\begin{align*}
+			&~~~~~ \tikzfig{triangle/graph_state/1} &&~~=~~ \tikzfig{triangle/graph_state/2} &&&~~=~~ \tikzfig{triangle/graph_state/3} \\
+			&~~=~~ \tikzfig{triangle/graph_state/4} &&~~=~~ \tikzfig{triangle/graph_state/5} &&&~~=~~ \tikzfig{triangle/graph_state/6} \\
+			&~~=~~ \tikzfig{triangle/graph_state/7}
+		\end{align*}
+		
+	\end{proof}
+\end{lemma}
+
+Other base cases $K_0, K_1$ and $K_2$ are easy enough to prove. For larger complete graphs $K_n$ we proceed inductively:
+
+\begin{lemma}
+	\begin{equation}
+		\tikzfig{local_comp/K_n/1} ~~=~~ \tikzfig{local_comp/K_n/16}
+	\end{equation}
+	\begin{proof}
+		\begin{align*}
+			&~~~~~ \tikzfig{local_comp/K_n/1} &&~~=~~ \tikzfig{local_comp/K_n/2} &&&~~=~~ \tikzfig{local_comp/K_n/3} \\
+			&~~=~~ \tikzfig{local_comp/K_n/4} &&~~=~~ \tikzfig{local_comp/K_n/5} &&&~~=~~ \tikzfig{local_comp/K_n/6} \\
+			&~~=~~ \tikzfig{local_comp/K_n/7} &&~~=~~ \tikzfig{local_comp/K_n/8} &&&~~=~~ \tikzfig{local_comp/K_n/9} \\
+			&~~=~~ \tikzfig{local_comp/K_n/10} &&~~=~~ \tikzfig{local_comp/K_n/11} &&&~~=~~ \tikzfig{local_comp/K_n/12} \\
+			&~~=~~ \tikzfig{local_comp/K_n/13} &&~~=~~ \tikzfig{local_comp/K_n/14} &&&~~=~~ \tikzfig{local_comp/K_n/15} \\
+			&~~=~~ \tikzfig{local_comp/K_n/16}
+		\end{align*}
+		
+	\end{proof}
+\end{lemma}
+
+For general (non-complete) graphs, can derive the result from the $K_n$ case. Then need to derive pivot equation. 
+
+\section{Elimination Theorems}
+
+Find as many eliminatable spiders as possible!
+
+\bibliography{qudit_simplification}
+
+\appendix
+
+\end{document} 

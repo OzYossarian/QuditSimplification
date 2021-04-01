@@ -1,0 +1,47 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (-1, 0) {};
+		\node [style=none] (1) at (3.5, 0) {};
+		\node [style=none] (2) at (1.25, -1.75) {};
+		\node [style=none] (3) at (-1, 0) {};
+		\node [style=none] (4) at (-0.75, 0) {};
+		\node [style=none] (7) at (3.25, 0) {};
+		\node [style=none] (8) at (1.25, -0.5) {$\scriptstyle{K_{n-2} * x}$};
+		\node [style=none] (9) at (-0.75, 5.25) {};
+		\node [style=none] (12) at (3.25, 5.25) {};
+		\node [style=none] (15) at (1.25, 0.5) {...};
+		\node [style=Z dot] (21) at (-3.25, 4) {};
+		\node [style=Z dot] (22) at (-2, 4) {};
+		\node [style=none] (23) at (-3.25, 5.25) {};
+		\node [style=none] (24) at (-2, 5.25) {};
+		\node [style=Z phase dot] (26) at (-0.75, 4.75) {$\vec{\tau}$};
+		\node [style=Z phase dot] (27) at (3.25, 4.75) {$\vec{\tau}$};
+		\node [style=X phase dot] (28) at (-3.25, 4.75) {$-\vec{\tau}$};
+		\node [style=Z phase dot] (29) at (-2, 4.75) {$\vec{\tau}$};
+		\node [style=Z dot] (30) at (-3.25, 3) {};
+		\node [style=Z dot] (31) at (-2.25, 3) {};
+		\node [style=Z dot] (32) at (-1.75, 3) {};
+		\node [style=Z dot] (33) at (-0.75, 0.5) {};
+		\node [style=Z dot] (34) at (3.25, 0.5) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0.center) to (3.center);
+		\draw (3.center) to (2.center);
+		\draw (2.center) to (1.center);
+		\draw (0.center) to (1.center);
+		\draw (4.center) to (9.center);
+		\draw (7.center) to (12.center);
+		\draw [style=hadamard edge] (21) to (22);
+		\draw (23.center) to (21);
+		\draw (24.center) to (22);
+		\draw (21) to (30);
+		\draw (22) to (31);
+		\draw (22) to (32);
+		\draw [style=hadamard edge] (30) to (33);
+		\draw [style=hadamard edge] (30) to (34);
+		\draw [style=hadamard edge] (31) to (33);
+		\draw [style=hadamard edge] (32) to (33);
+		\draw [style=hadamard edge] (31) to (34);
+		\draw [style=hadamard edge] (32) to (34);
+	\end{pgfonlayer}
+\end{tikzpicture}

@@ -1,0 +1,5 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (0, 0) {$\cev{\alpha} = \left( \ \alpha_{d-1} \ , \ \ldots \ , \ \alpha_{1} \ \right)$};
+	\end{pgfonlayer}
+\end{tikzpicture}

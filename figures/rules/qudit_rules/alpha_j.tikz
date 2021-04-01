@@ -1,0 +1,5 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (0, 0) {$\vec{\alpha}_j = \left( \ \alpha_{1-j} - \alpha_{-j} \ , \ \ldots \ , \ \alpha_{d-1-j} - \alpha_{-j} \ \right)$};
+	\end{pgfonlayer}
+\end{tikzpicture}

@@ -1,0 +1,21 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=X dot] (0) at (1, -0.5) {};
+		\node [style=none] (4) at (-0.5, 2.5) {};
+		\node [style=none] (5) at (2.5, 2.5) {};
+		\node [style=none] (6) at (-2.5, 2.5) {};
+		\node [style=Z dot] (10) at (-2.5, -2.5) {};
+		\node [style=hadamard] (11) at (-0.25, -1.25) {};
+		\node [style=X phase dot] (15) at (-2.5, 1.5) {$\vec{\tau}$};
+		\node [style=Z phase dot] (16) at (-0.5, 1.5) {$-\vec{\tau}$};
+		\node [style=Z phase dot] (17) at (2.5, 1.5) {$-\vec{\tau}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (6.center) to (10);
+		\draw (10) to (0);
+		\draw [bend right] (16) to (0);
+		\draw (4.center) to (16);
+		\draw [bend right] (0) to (17);
+		\draw (5.center) to (17);
+	\end{pgfonlayer}
+\end{tikzpicture}
