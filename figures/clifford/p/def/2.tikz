@@ -3,8 +3,8 @@
 		\node [style=Z phase dot] (0) at (0, 0) {$\p{k}{x}$};
 		\node [style=none] (1) at (0, 2) {};
 		\node [style=none] (2) at (0, -2) {};
-		\node [style=X phase dot] (3) at (0, 1.25) {$i\vec{\kappa}$};
-		\node [style=Z phase dot] (4) at (0, -1.25) {$ik\vec{\kappa}$};
+		\node [style=X phase dot] (3) at (0, 1.25) {$n\vec{\kappa}$};
+		\node [style=Z phase dot] (4) at (0, -1.25) {$nk\vec{\kappa}$};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw [in=270, out=90] (2.center) to (1.center);
