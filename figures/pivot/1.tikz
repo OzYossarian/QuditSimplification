@@ -1,0 +1,72 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=Z dot] (0) at (-4, -1.5) {};
+		\node [style=Z dot] (1) at (4, -1.5) {};
+		\node [style=hadamard manual] (2) at (0, -1.5) {$w$};
+		\node [style=none] (3) at (-1.75, 5) {};
+		\node [style=none] (4) at (-2, 4.75) {};
+		\node [style=none] (5) at (1.75, 0.5) {};
+		\node [style=none] (6) at (2, 0.75) {};
+		\node [style=none] (7) at (1.75, 5) {};
+		\node [style=none] (8) at (2, 4.75) {};
+		\node [style=none] (9) at (-1.75, 0.5) {};
+		\node [style=none] (10) at (-2, 0.75) {};
+		\node [style=none] (19) at (-0.75, 4.5) {};
+		\node [style=none] (20) at (-1, 4.25) {};
+		\node [style=none] (21) at (0.75, 1.5) {};
+		\node [style=none] (22) at (1, 1.75) {};
+		\node [style=none] (23) at (0.75, 4.5) {};
+		\node [style=none] (24) at (1, 4.25) {};
+		\node [style=none] (25) at (-0.75, 1.5) {};
+		\node [style=none] (26) at (-1, 1.75) {};
+		\node [style=Z dot] (35) at (0, 3) {};
+		\node [style=none] (37) at (0, 6) {};
+		\node [style=hadamard manual] (41) at (1.5, 1.25) {$y$};
+		\node [style=none] (42) at (-4, 6) {};
+		\node [style=none] (43) at (4, 6) {};
+		\node [style=hadamard manual] (44) at (-2.5, 0.25) {$x$};
+		\node [style=none] (45) at (-2.75, 5.5) {};
+		\node [style=none] (46) at (-3, 5.25) {};
+		\node [style=none] (47) at (2.75, -0.5) {};
+		\node [style=none] (48) at (3, -0.25) {};
+		\node [style=none] (49) at (2.75, 5.5) {};
+		\node [style=none] (50) at (3, 5.25) {};
+		\node [style=none] (51) at (-2.75, -0.5) {};
+		\node [style=none] (52) at (-3, -0.25) {};
+		\node [style=none] (53) at (-4, -2) {$\textcolor{red}{*_a}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (1);
+		\draw [style=bang] (9.center)
+			 to (5.center)
+			 to [bend right=45] (6.center)
+			 to (8.center)
+			 to [bend right=45] (7.center)
+			 to (3.center)
+			 to [bend right=45] (4.center)
+			 to (10.center)
+			 to [bend right=45] cycle;
+		\draw [style=bang] (25.center) to (21.center);
+		\draw [style=bang, bend right=45] (21.center) to (22.center);
+		\draw [style=bang] (22.center) to (24.center);
+		\draw [style=bang, bend right=45] (24.center) to (23.center);
+		\draw [style=bang] (23.center) to (19.center);
+		\draw [style=bang, bend right=45] (19.center) to (20.center);
+		\draw [style=bang] (20.center) to (26.center);
+		\draw [style=bang, bend right=45] (26.center) to (25.center);
+		\draw (37.center) to (35);
+		\draw (35) to (0);
+		\draw (35) to (1);
+		\draw (42.center) to (0);
+		\draw (43.center) to (1);
+		\draw [style=bang] (51.center)
+			 to (47.center)
+			 to [bend right=45] (48.center)
+			 to (50.center)
+			 to [bend right=45] (49.center)
+			 to (45.center)
+			 to [bend right=45] (46.center)
+			 to (52.center)
+			 to [bend right=45] cycle;
+	\end{pgfonlayer}
+\end{tikzpicture}

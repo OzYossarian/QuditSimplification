@@ -1,0 +1,16 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=Z phase dot] (0) at (0, 0) {$-r\vec{s}$};
+		\node [style=Z phase dot] (1) at (0, 2) {$r^{-1}(p-1)\vec{s}$};
+		\node [style=Z phase dot] (2) at (0, -2) {$r^{-1}(s-1)\vec{s}$};
+		\node [style=hadamard] (3) at (0, -1) {};
+		\node [style=hadamard] (4) at (0, 1) {};
+		\node [style=none] (5) at (0, 4) {};
+		\node [style=none] (6) at (0, -4) {};
+		\node [style=hadamard adjoint] (7) at (0, -3) {};
+		\node [style=hadamard adjoint] (8) at (0, 3) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [in=90, out=-90] (5.center) to (6.center);
+	\end{pgfonlayer}
+\end{tikzpicture}
